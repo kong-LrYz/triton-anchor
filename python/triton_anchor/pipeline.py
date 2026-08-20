@@ -26,7 +26,7 @@ def build_ttir_pipeline(pm, hw: Optional[HWCapability] = None):
     to the 7 mandatory passes used by all three projects.
 
     Args:
-        pm (Any): An ``mlir.PassManager`` instance.
+        pm: An ``mlir.PassManager`` instance.
         hw: Optional ``HWCapability``.  If provided, conditional passes
             are added based on hardware capabilities.
 
@@ -113,12 +113,12 @@ def make_ttir(mod, metadata: dict, hw: Optional[HWCapability] = None):
     This mirrors the signature of triton_race's ``_make_ttir(mod, metadata, options)``.
 
     Args:
-        mod (Any): An MLIR module (``ir.Module``).
+        mod: An MLIR module (``ir.Module``).
         metadata: Compilation metadata dict (mutated in-place).
         hw: Optional ``HWCapability``.
 
     Returns:
-        (Any): The optimized MLIR module (same object, mutated in-place).
+        The optimized MLIR module (same object, mutated in-place).
     """
     from triton._C.libtriton import ir
 
@@ -130,16 +130,15 @@ def make_ttir(mod, metadata: dict, hw: Optional[HWCapability] = None):
 
 
 def inject_hw_attributes(mod, hw: HWCapability, metadata: dict):
-    """Inject hardware capability data into an MLIR module and its metadata.
+    """将硬件能力信息注入 MLIR module 属性和编译元数据中。
 
-    Call this after TTIR optimization and before hardware-aware IR lowering.
-    Backend plugins can inject additional attributes through the
-    ``on_ttir_ready()`` hook.
+    在 TTIR 优化之后、硬件感知 IR 降级之前调用。
+    后端插件可通过 ``on_ttir_ready()`` hook 注入额外属性。
 
     Args:
-        mod (Any): The MLIR module to update.
-        hw: The target hardware capability descriptor.
-        metadata: Compilation metadata updated in place.
+        mod: MLIR module。
+        hw: 目标硬件能力描述。
+        metadata: 编译元数据 dict（就地更新）。
     """
     try:
         from triton._C.libtriton import ir

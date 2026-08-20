@@ -31,7 +31,6 @@ class HybridAdapter(ILinalgOptAdapter):
     """
 
     def name(self) -> str:
-        """Return the unique identifier for the hybrid adapter."""
         return "hybrid"
 
     def convert(self, ttir_module: Any, metadata: dict, context: Any = None) -> Any:
@@ -52,7 +51,6 @@ class HybridAdapter(ILinalgOptAdapter):
         return TritonLinalgAdapter().convert(ttir_module, metadata, context)
 
     def get_output_dialects(self) -> List[str]:
-        """Return the MLIR dialects that hybrid conversion may produce."""
         return [
             "linalg",
             "linalg_ext",

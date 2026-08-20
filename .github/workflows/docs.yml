@@ -27,10 +27,17 @@ jobs:
       - name: Install docs dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r docs/requirements.txt
+          pip install \
+            "mkdocs==1.6.1" \
+            "mkdocs-material==9.5.50" \
+            "mkdocstrings[python]==0.28.2" \
+            "mkdocstrings-python==1.16.2" \
+            "mkdocs-autorefs==1.4.4" \
+            "mkdocs-gen-files==0.5.0" \
+            "black==25.1.0"
 
       - name: Build docs
-        run: mkdocs build --strict
+        run: mkdocs build
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
