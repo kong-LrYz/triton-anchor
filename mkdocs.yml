@@ -28,7 +28,7 @@ nav:
 plugins:
   - gen-files:
       scripts:
-        - docs/gen_api_reference.py
+        - docs/scripts/gen_api_reference.py
   - autorefs
   - mkdocstrings:
       default_handler: python

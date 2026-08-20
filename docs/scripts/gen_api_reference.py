@@ -5,7 +5,7 @@ import mkdocs_gen_files
 
 
 TARGET_PATH = "index.md"
-PACKAGE_ROOT = Path(__file__).resolve().parents[1] / "python" / "triton_anchor"
+PACKAGE_ROOT = Path(__file__).resolve().parents[2] / "python" / "triton_anchor"
 SECTION_NAMES = ("Core API", "Adapters", "Extensions")
 
 
