@@ -58,6 +58,7 @@ class TritonSharedAdapter(ILinalgOptAdapter):
         self._mode = mode
 
     def name(self) -> str:
+        """Return the unique identifier for the triton-shared adapter."""
         return "triton-shared"
 
     def _find_opt_tool(self) -> str:
@@ -142,11 +143,13 @@ class TritonSharedAdapter(ILinalgOptAdapter):
             raise ValueError(f"Unknown mode: {self._mode}")
 
     def get_required_passes(self) -> List[str]:
+        """Return the conversion passes required for the selected mode."""
         if self._mode == "structured":
             return ["triton-to-structured", "triton-to-linalg"]
         return ["triton-to-linalg-experimental"]
 
     def get_output_dialects(self) -> List[str]:
+        """Return the MLIR dialects that triton-shared may produce."""
         return [
             "linalg",
             "tensor",

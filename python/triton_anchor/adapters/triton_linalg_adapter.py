@@ -58,6 +58,7 @@ class TritonLinalgAdapter(ILinalgPybindAdapter):
     """
 
     def name(self) -> str:
+        """Return the unique identifier for the triton-linalg adapter."""
         return "triton-linalg"
 
     def convert(self, ttir_module: Any, metadata: dict, context: Any = None) -> Any:
@@ -153,6 +154,7 @@ class TritonLinalgAdapter(ILinalgPybindAdapter):
         return ""
 
     def get_required_passes(self) -> List[str]:
+        """Return the passes used by the triton-linalg conversion pipeline."""
         return [
             "triton_to_ppl",
             "wrap_func_body_with_single_block",
@@ -169,6 +171,7 @@ class TritonLinalgAdapter(ILinalgPybindAdapter):
         ]
 
     def get_output_dialects(self) -> List[str]:
+        """Return the MLIR dialects that triton-linalg may produce."""
         return [
             "linalg",
             "linalg_ext",

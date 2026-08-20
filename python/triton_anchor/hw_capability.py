@@ -61,7 +61,7 @@ class ComputeParadigm(Enum):
 class MatrixCapability:
     """Capability descriptor for AME (Advanced Matrix Extension) hardware.
 
-    Used by: SpacemiT X60, 玄铁 AME, ARM SME.
+    Used by: SpacemiT X60, Xuantie AME, ARM SME.
     """
 
     num_matrix_registers: int = 8
@@ -169,8 +169,9 @@ class HWCapability:
         paths that expect ``GPUTarget(backend, arch, warp_size)``.
 
         Returns:
-            A ``GPUTarget``-compatible object.  If ``triton`` is not
-            installed, returns a plain ``dict`` with the same fields.
+            (GPUTarget | dict[str, object]): A ``GPUTarget``-compatible
+                object. If ``triton`` is not installed, returns a plain
+                ``dict`` with the same fields.
         """
         backend = self._infer_backend_name()
         arch = self._infer_arch()
